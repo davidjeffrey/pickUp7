@@ -42,7 +42,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 app.use("/api/order", orderRoutes(knex));
-app.use("/api/menu/:menuId", menuRoutes(knex));
+app.use("/api/menu/", menuRoutes(knex));
 
 // Home page
 app.get("/", (req, res) => {

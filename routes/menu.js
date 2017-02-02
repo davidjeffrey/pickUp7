@@ -8,7 +8,7 @@ module.exports = (knex) => {
     knex
       .select("*")
       .from("menus")
-      .where("id", req.params.id)
+      // .where("id", req.params.id)
       .then((results) => {
         res.json(results);
     });
