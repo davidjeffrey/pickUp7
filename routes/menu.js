@@ -12,6 +12,7 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
     });
+      res.render("menu");
   });
 
   return router;
