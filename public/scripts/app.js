@@ -2,14 +2,14 @@ $(() => {
 
   // code below is what was originally in this file. i have left it for reference
 
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/api/users"
+  // }).done((users) => {
+  //   for(user of users) {
+  //     $("<div>").text(user.name).appendTo($("body"));
+  //   }
+  // });;
 
   function escape(str) {
     let div = document.createElement('div');
@@ -19,7 +19,7 @@ $(() => {
 
   function createMenuElement (data) {
     let result = $(
-      `<p></p>
+      `<p>djdjdj</p>
       <p></p>
       <p></p>`
     )
@@ -27,22 +27,24 @@ $(() => {
   }
 
   function renderMenu (items) {
-      $('#menu-area').empty();
-      for (item of menu) {
+      // $('.container').empty();
+      for (item of items) {
         let $item = createMenuElement(item);
-        $('#menu-area').append($item);
+        $('.container').append($item);
       }
   }
 
   function loadMenu () {
     $.ajax({
       method: "GET",
-      url: "/api/menu/:id"
-    }).success((items) => {
-      for(item of menu) {
+      url: "/api/menu/1",
+      success: ((items) => {
+      // for(item of menu) {
+        console.log("pp")
         renderMenu(items);
-      }
-    });;
+      // }
+      })
+    })
   }
 
   function createOrderElement (orderData) {
