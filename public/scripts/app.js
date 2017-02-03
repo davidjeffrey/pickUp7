@@ -19,11 +19,9 @@ $(() => {
 
   function createMenuElement (data) {
     let result = $(
-
-      //TODO HTML code to be inserted here that will be rendered everything should use
-      //the escape function. I should also look at making section titles. Might need to
-      //add a category to the database indicating what categories, i.e. mains, apps,
-      //are to be included
+      `<p></p>
+      <p></p>
+      <p></p>`
     )
     return result;
   }

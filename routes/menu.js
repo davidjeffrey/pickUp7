@@ -7,13 +7,11 @@ module.exports = (knex) => {
   router.get("/:id", (req, res) => {
     knex
       .select("*")
-      .from("menus")
-      .where("resto_id", req.params.id)
+      .from("items")
+      .where("menu_id", req.params.id)
       .then((results) => {
         res.json(results);
     });
-      res.render("menu");
   });
-
   return router;
 }
