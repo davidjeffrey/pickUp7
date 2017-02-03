@@ -59,11 +59,19 @@ $(() => {
 
   $(".confirm").on("click", function(){
     event.preventDefault();
-        $.post( "./order", $(".order").serialize())
-        .success( function() {
-          renderOrder();
-          });
-  });
+    $.ajax({
+      method: "POST",
+      url: "/api/post/",
+      data: {
+        order_modifications: $(".modifications").serialize(),
+        order_phone_num: $(".phoneNum").serialize()
+        }
+      success: ((".order") => {
+        renderOrder();
+      })
+    });
+  })
+
 
   loadMenu();
 

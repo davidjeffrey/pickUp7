@@ -3,23 +3,25 @@
 const express = require('express');
 const router  = express.Router();
 
-function inputOrder (restoId, orderArray) {
-  // let order =  {
-  //   resto_id: req.params.id,
-  //   order_item:
-  //   order_price:
-  //     }
-  //     // for (item of orderArray) {
-  //     //     }
-  return order;
+let order = {
+  id: 5,
+  name: "req.params.body"
 }
 
 module.exports = (knex) => {
-  router.post("/:id", (req, res) => {
+
+  router.post("/", (req, res) => {
+    let d = Date()
+    let order = {
+      order_modifications: req.query.order_modifications,
+      order_phone_num: req.query.order_phone_num,
+      order_status: "order sent to db",
+      order_time: d
+    }
+    console.log(req.query);
     knex
-      .insert(inputOrder(req.params.body.order)) //TODO this probaby isnt right
+      .insert(order)
       .into("orders")
-      .where("")
       .then((results) => {
         res.status(200);
         res.json(results);
