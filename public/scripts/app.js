@@ -19,31 +19,32 @@ $(() => {
 
   function createMenuElement (data) {
     let result = $(
-      `<p>123</p>
-      <p>123</p>
-      <p>123</p>`
+      `<p>djdjdj</p>
+      <p></p>
+      <p></p>`
     )
     return result;
   }
 
   function renderMenu (items) {
-      $('.menu-area').empty();
-      for (item of menu) {
+      // $('.container').empty();
+      for (item of items) {
         let $item = createMenuElement(item);
-        $('.menu-area').append($item);
+        $('.container').append($item);
       }
   }
 
   function loadMenu () {
     $.ajax({
       method: "GET",
-      url: "/api/menu/1"
-    }).success((items) => {
-      for(item of items) {
-        // console.log(items);
-        renderMenu(items[item]);
-      }
-    });;
+      url: "/api/menu/1",
+      success: ((items) => {
+      // for(item of menu) {
+        console.log("pp")
+        renderMenu(items);
+      // }
+      })
+    })
   }
 
   function createOrderElement (orderData) {

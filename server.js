@@ -43,6 +43,10 @@ app.use("/api/users", usersRoutes(knex));
 app.use("/api/order", orderRoutes(knex));
 app.use("/api/menu/", menuRoutes(knex));
 
+app.get("/u/:id", (req,res) => {
+  res.render("index");
+});
+
 // Home page
 app.get("/", (req, res) => {
   res.render("index");
