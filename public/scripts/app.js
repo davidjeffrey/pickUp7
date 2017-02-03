@@ -19,9 +19,9 @@ $(() => {
 
   function createMenuElement (data) {
     let result = $(
-      `<p>djdjdj</p>
-      <p></p>
-      <p></p>`
+      `<p>${data.item}</p>
+      <p>${data.price}</p>
+      <p>${data.item_description}</p>`
     )
     return result;
   }
@@ -34,15 +34,13 @@ $(() => {
       }
   }
 
-  function loadMenu () {
+  function loadMenu (id) {
     $.ajax({
       method: "GET",
-      url: "/api/menu/1",
+      url: "/api/menu/" + window.location.pathname.replace("/u/", ""),
       success: ((items) => {
-      // for(item of menu) {
         console.log("pp")
         renderMenu(items);
-      // }
       })
     })
   }
