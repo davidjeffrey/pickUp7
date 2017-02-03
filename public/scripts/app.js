@@ -2,14 +2,14 @@ $(() => {
 
   // code below is what was originally in this file. i have left it for reference
 
-  $.ajax({
-    method: "GET",
-    url: "/api/users"
-  }).done((users) => {
-    for(user of users) {
-      $("<div>").text(user.name).appendTo($("body"));
-    }
-  });;
+  // $.ajax({
+  //   method: "GET",
+  //   url: "/api/users"
+  // }).done((users) => {
+  //   for(user of users) {
+  //     $("<div>").text(user.name).appendTo($("body"));
+  //   }
+  // });;
 
   function escape(str) {
     let div = document.createElement('div');
@@ -19,28 +19,29 @@ $(() => {
 
   function createMenuElement (data) {
     let result = $(
-      `<p></p>
-      <p></p>
-      <p></p>`
+      `<p>123</p>
+      <p>123</p>
+      <p>123</p>`
     )
     return result;
   }
 
   function renderMenu (items) {
-      $('#menu-area').empty();
+      $('.menu-area').empty();
       for (item of menu) {
         let $item = createMenuElement(item);
-        $('#menu-area').append($item);
+        $('.menu-area').append($item);
       }
   }
 
   function loadMenu () {
     $.ajax({
       method: "GET",
-      url: "/api/menu/:id"
+      url: "/api/menu/1"
     }).success((items) => {
-      for(item of menu) {
-        renderMenu(items);
+      for(item of items) {
+        // console.log(items);
+        renderMenu(items[item]);
       }
     });;
   }

@@ -4,11 +4,11 @@ const express = require('express');
 const router  = express.Router();
 
 function inputOrder (restoId, orderArray) {
-  let order =  {
-    resto_id: req.params.id,
-    order_item:
-    order_price:
-      }
+  // let order =  {
+  //   resto_id: req.params.id,
+  //   order_item:
+  //   order_price:
+  //     }
       // for (item of orderArray) {
       //     }
   return order;
