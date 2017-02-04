@@ -16,7 +16,7 @@ const knexLogger  = require('knex-logger');
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
-
+const updatesRoutes = require("./routes/updates");
 const orderRoutes = require("./routes/order");
 const menuRoutes  = require("./routes/menu");
 
@@ -42,6 +42,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 app.use("/api/order", orderRoutes(knex));
 app.use("/api/menu/", menuRoutes(knex));
+app.use("/api/updates/", updatesRoutes(knex));
 
 app.get("/u/:id", (req,res) => {
   res.render("index");
