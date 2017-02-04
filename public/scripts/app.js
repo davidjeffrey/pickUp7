@@ -27,7 +27,6 @@ $(() => {
   }
 
   function renderMenu (items) {
-      // $('.container').empty();
       for (item of items) {
         let $item = createMenuElement(item);
         $('.container').append($item);
@@ -51,27 +50,46 @@ $(() => {
     )
   }
 
-  function renderOrder (orderedItems) {
-    $('#menu-area').empty();
+//   function renderOrder (orderedItems) {
+//     $('.container').empty();
+//     $.ajax({
+//       method: "GET",
+//       url: "/api/updates/",
+//       data:
+//       success: ((items) => {
+//         console.log("pp")
+//         renderMenu(items);
+//       })
+//     [
+//   {
+//     "item_id": 3,
+//     "order_id": 68
+//   },
+//   {
+//     "item_id": 4,
+//     "order_id": 68
+//   }
+// ]
+
     // TODO render order. also going to need to see how to get the timing to update
     // confirmation of order it also something thats going to need to update
-  }
+  // }
 
-  $(".confirm").on("click", function(){
-    event.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: "/api/post/",
-      data: {
-        order_modifications: $(".modifications").serialize(),
-        order_phone_num: $(".phoneNum").serialize()
-        }
-      success: ((".order") => {
-        renderOrder();
-      })
-    });
-  })
-
+  // $(".confirm").on("click", function(){
+  //   event.preventDefault();
+  //   $.ajax({
+  //     method: "POST",
+  //     url: "/api/order/",
+  //     data: {
+  //       order_modifications: $(".modifications").serialize(),
+  //       order_phone_num: $(".phoneNum").serialize(),
+  //       itemid: TODO an array
+  //       }
+  //     success: ((res) => {
+  //       renderOrder(res);
+  //     })
+  //   });
+  // })
 
   loadMenu();
 
