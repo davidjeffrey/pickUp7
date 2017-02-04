@@ -17,6 +17,8 @@ $(() => {
     return div.innerHTML;
   }
 
+  let idForItem = 1;
+
   function createMenuElement (data) {
     let result = $(`
       <div class="row content">
@@ -26,14 +28,14 @@ $(() => {
           <div class="col-sm-8 text-left">
             <div class="row menu-area">
               <div class="col-sm-6 text-left">
-                <strong>${data.item}</strong><br>
-                ${data.item_description}
+                <div id="item${idForItem}">${data.item}</div>
+                <div id="item_description${idForItem}">${data.item_description}</div>
               </div>
-              <div class="col-sm-2 text-center price">
+              <div class="col-sm-2 text-center price" id="price${idForItem}">
                 ${data.price}
               </div>
               <div class="col-sm-2 text-center">
-                <button class="minus">-</button><label class="qty"> 0 </label><button class="plus">+</button>
+                <button class="minus">-</button><label class="qty" id="qty${idForItem}">0</label><button class="plus">+</button>
               </div>
             </div>
           </div>
@@ -42,6 +44,7 @@ $(() => {
           </div>
         </div>
     `)
+    idForItem++;
     return result;
   }
 
