@@ -3,11 +3,6 @@
 const express = require('express');
 const router  = express.Router();
 
-let order = {
-  id: 5,
-  name: "req.params.body"
-}
-
 module.exports = (knex) => {
 
   router.post("/", (req, res) => {
@@ -18,14 +13,30 @@ module.exports = (knex) => {
       order_status: "order sent to db",
       order_time: d
     }
+    function itemsOrderedToArray (items, orderId) {
+      let result = [];
+      items.split("")
+      for (let item of items) {
+        result.push({item: orderId});
+      }
+      console.log(result)
+      return result;
+    }
+    console.log(req.query.items);
     console.log(req.query);
     knex
       .insert(order)
       .into("orders")
-      .then((results) => {
-        res.status(200);
-        res.json(results);
-    });
+      .returning('id')
+      .then((ordId) => {
+        knex
+          .batchInsert("cart", itemsOrderedToArray(req.query.items, ordId))
+          .returning('*')
+          .then((ordId) => {
+            res.status(200);
+            res.json(results);
+          })
+        });
   });
 
   return router;

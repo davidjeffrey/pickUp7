@@ -57,6 +57,12 @@ $(() => {
     // confirmation of order it also something thats going to need to update
   }
 
+  function composeOrder (itemsOrdered) {
+    for (item of itemsOrdered) {
+
+    }
+  }
+
   $(".confirm").on("click", function(){
     event.preventDefault();
     $.ajax({
@@ -64,7 +70,8 @@ $(() => {
       url: "/api/post/",
       data: {
         order_modifications: $(".modifications").serialize(),
-        order_phone_num: $(".phoneNum").serialize()
+        order_phone_num: $(".phoneNum").serialize(),
+        items: {$(".order").serialize()}
         }
       success: ((".order") => {
         renderOrder();
