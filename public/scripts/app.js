@@ -69,8 +69,8 @@ $(() => {
         renderMenu(items);
         $(".minus").click(function(){
           if (parseInt($(this).siblings(".qty")[0].innerHTML, 10) > 0) {
+            let total = getValAndParseInt('#totalPrice') - countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
             $(this).siblings(".qty")[0].innerHTML -= 1;
-            let total = getValAndParseInt('#totalPrice') - countTotalPrice(getValAndParseInt('.price'), getValAndParseInt('.qty'));
             $('#totalPrice')[0].innerHTML = total;
           }
         });
@@ -78,8 +78,7 @@ $(() => {
           let qtyValue = $(this).siblings(".qty").val();
           qtyValue = parseInt($(this).siblings(".qty")[0].innerHTML, 10);
           $(this).siblings(".qty")[0].innerHTML = qtyValue + 1;
-          let total = getValAndParseInt('#totalPrice') + countTotalPrice(getValAndParseInt('.price'), getValAndParseInt('.qty'));
-          console.log(total);
+          let total = getValAndParseInt('#totalPrice') + countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
           $('#totalPrice')[0].innerHTML = total;
         });
       })
