@@ -47,11 +47,52 @@ $(() => {
     return result;
   }
 
+  function createOrderElement (orderData) {
+    console.log(orderData)
+    let result = $(`
+      <div>
+      ${orderData.order_status}
+      ${orderData.order_time}
+      ${orderData.order_estimated_time}
+      ${orderData.order_modifications}
+      ${orderData.order_phone_num}
+      ${orderData.order_id}
+      ${orderData.item}
+      ${orderData.price}
+      ${orderData.item_description}
+       </div>
+
+      // {
+      //   "id": 3,
+      //   "order_estimated_time": null,
+      //   "order_modifications": "none",
+      //   "order_phone_num": "9999999999",
+      //   "order_status": "order sent",
+      //   "order_time": "Sat Feb 04 2017 19:08:42 GMT+0000 (UTC)",
+      //   "item_id": 3,
+      //   "order_id": 67,
+      //   "menu_id": 1,
+      //   "item": "cheesecake",
+      //   "price": "10",
+      //   "item_description": "new york style, out of this world"
+      // }
+
+      `)
+      return result;
+   }
+
   function renderMenu (items) {
       for (item of items) {
         let $item = createMenuElement(item);
         $('.menuList').append($item);
       }
+  }
+
+  function renderOrder (items) {
+    for (item of items) {
+      let $item = createOrderElement(item);
+      $('.container').append($item);
+    }
   }
 
   function countTotalPrice(price, qty){
@@ -74,10 +115,11 @@ $(() => {
       method: "GET",
       url: "/api/menu/" + window.location.pathname.replace("/u/", ""),
       success: ((items) => {
+        console.log(items)
         renderMenu(items);
-        let itemsOrdered = []
+        let $itemsOrdered = []
         $(".minus").click(function(){
-          removeFromOrder(itemsOrdered, $(this).siblings(".id")[0].innerHTML)
+          removeFromOrder($itemsOrdered, $(this).siblings(".id")[0].innerHTML)
           if (parseInt($(this).siblings(".qty")[0].innerHTML, 10) > 0) {
             let total = getValAndParseInt('#totalPrice') - countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
             $(this).siblings(".qty")[0].innerHTML -= 1;
@@ -85,7 +127,7 @@ $(() => {
           }
         });
         $(".plus").click(function(){
-          itemsOrdered.push($(this).siblings(".id")[0].innerHTML)
+          $itemsOrdered.push($(this).siblings(".id")[0].innerHTML)
           let qtyValue = $(this).siblings(".qty").val();
           console.log(qtyValue)
           qtyValue = parseInt($(this).siblings(".qty")[0].innerHTML, 10);
@@ -93,16 +135,33 @@ $(() => {
           let total = getValAndParseInt('#totalPrice') + countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
           $('#totalPrice')[0].innerHTML = total;
         });
-         $(".confirm").on("click", function(){
-           function gatherOrder () {
-              console.log(itemsOrdered)
-            }
-           gatherOrder ()
-      })
-      })
-    })
-  }
+        $(".confirm").on("click", function(){
+          event.preventDefault();
+          $.ajax({
+            method: "POST",
+            url: "/api/order/",
+            data: {
+              // order_modifications: $(".modifications").serialize(),
+              order_phone_num: $(".phoneNum").val(),
+              itemid: $itemsOrdered
+            },
+            success: ((res) => {
+              console.log(res)
+              $('.container').empty();
+              $.ajax({
+                method: "GET",
+                url: "/api/updates/" + res,
+                success: ((theOrder) => {
+                  renderOrder(theOrder)
 
+                })
+              })
+            })
+          });
+        })
+      })
+      })
+}
 
   loadMenu();
 

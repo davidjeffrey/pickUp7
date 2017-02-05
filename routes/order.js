@@ -8,11 +8,12 @@ module.exports = (knex) => {
   router.post("/", (req, res) => {
     let d = Date()
     let order = {
-      order_modifications: req.query.order_modifications,
-      order_phone_num: req.query.order_phone_num,
+      order_modifications: req.body.order_modifications,
+      order_phone_num: req.body.order_phone_num,
       order_status: "order sent",
       order_time: d
     }
+    console.log(req.body.itemid)
     function itemsOrderedToArray (items, orderId) {
       let result = [];
       items.forEach(function(item) {
@@ -31,7 +32,7 @@ module.exports = (knex) => {
       .then((ordId) => {
         console.log(ordId)
         knex
-          .batchInsert("cart", itemsOrderedToArray(req.query.itemid, ordId))
+          .batchInsert("cart", itemsOrderedToArray(req.body.itemid, ordId))
           .returning('*')
           .then((ord) => {
             res.status(200);
