@@ -147,7 +147,8 @@ $(() => {
             },
             success: ((res) => {
               console.log(res)
-              $('.container').empty();
+              $('.menuList').empty();
+              $('.finalizeOrder').empty();
               $.ajax({
                 method: "GET",
                 url: "/api/updates/" + res,
