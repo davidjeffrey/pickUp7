@@ -28,13 +28,13 @@ $(() => {
           <div class="col-sm-8 text-left">
             <div class="row menu-area">
               <div class="col-sm-6 text-left">
-                <div id="item${idForItem}">${data.item}</div>
-                <div id="item_description${idForItem}">${data.item_description}</div>
+                <div id="item${idForItem}" class="item_name">${data.item}</div>
+                <div id="item_description${idForItem}" class="food_description">${data.item_description}</div>
               </div>
               <div class="col-sm-2 text-center price" id="price${idForItem}">
                 ${data.price}
               </div>
-              <div class="col-sm-2 text-center">
+              <div class="col-sm-2 text-center qtyBox">
                 <button class="minus">-</button><label class="qty" id="qty${idForItem}">0</label><button class="plus">+</button><div class= "id" style= "display: none">${data.id}</div>
               </div>
             </div>

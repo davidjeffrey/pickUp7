@@ -1,7 +1,76 @@
 body {
-  background-color: #EEE;
+  background-color:white;
+  font-family: 'Merriweather Sans', sans-serif;
+}
 
-  h1 {
-    color: #244750;
-  }
+.jumbotronArea {
+  background-color: orange;
+  color: black;
+  font-family: 'Lobster', cursive;
+}
+
+.menuAttribute {
+  font-size: 170%;
+  font-style: bold;
+  padding: 5px 0;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+}
+
+.menu-area {
+  margin-top: 7px;
+  margin-botom: 6px;
+}
+
+.qtyBox {
+  top: 8px;
+}
+
+.price {
+  font-size: 120%;
+  top: 8px;
+}
+
+.item_name {
+  font-size: 150%;
+  font-weight: bold;
+}
+
+.food_description {
+  font-style: italic;
+  color: grey;
+}
+
+.finalizeOrder {
+  margin-top: 3em;
+}
+
+.totalPriceBox {
+  top: 10px;
+  font-size: 140%;
+}
+
+.phoneLabel{
+  vertical-align: top;
+  margin-top: 12px;
+}
+
+#userPhoneNumber {
+  margin-left: 4px;
+}
+
+.qty {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.confirmButton {
+  top: 12px;
+  left: 23px;
+}
+
+.orderBox {
+  padding: 8px 3px;
+  border-style: solid;
+  border-radius: 10px;
 }
