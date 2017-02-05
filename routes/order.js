@@ -31,7 +31,7 @@ module.exports = (knex) => {
       .then((ordId) => {
         console.log(ordId)
         knex
-          .batchInsert("cart", itemsOrderedToArray(req.body.itemid, ordId))
+          .batchInsert("cart", itemsOrderedToArray(req.query.itemid, ordId))
           .returning('*')
           .then((ord) => {
             res.status(200);

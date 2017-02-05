@@ -36,6 +36,14 @@ function updater (orderId) {
     })
  }
 
+ // function gatherOrder () {
+ //   let itemsOrdered = []
+ //   $(".qty").each(function(){
+ //    itemsOrdered.push(this.next())
+ //    console.log(itemsOrdered)
+ // }
+ // gatherOrder ()
+
  // [
  //   {
  //     "item_id": 3,
@@ -47,24 +55,22 @@ function updater (orderId) {
  //   }
  // ]
 
-  // TODO render order. also going to need to see how to get the timing to update
-  // confirmation of order it also something thats going to need to update
 
-
-$(".confirm").on("click", function(){
-  event.preventDefault();
-  $.ajax({
-    method: "POST",
-    url: "/api/order/",
-    data: {
-      order_modifications: $(".modifications").serialize(),
-      order_phone_num: $(".phoneNum").serialize(),
-      itemid: $(".itemsById")
-    },
-      success: ((res) => {
-        updater(res);
-    })
-  });
-})
+// $(".confirm").on("click", function(){
+//   event.preventDefault();
+//   console.log("juicy")
+//   $.ajax({
+//     method: "POST",
+//     url: "/api/order/",
+//     data: {
+//       order_modifications: $(".modifications").serialize(),
+//       order_phone_num: $(".phoneNum").serialize(),
+//       itemid: $(".itemsById")
+//     },
+//       success: ((res) => {
+//         updater(res);
+//     })
+//   });
+// })
 
 });

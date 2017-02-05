@@ -35,12 +35,11 @@ $(() => {
                 ${data.price}
               </div>
               <div class="col-sm-2 text-center">
-                <button class="minus">-</button><label class="qty" id="qty${idForItem}">0</label><button class="plus">+</button>
+                <button class="minus">-</button><label class="qty" id="qty${idForItem}">0</label><button class="plus">+</button><div class= "id" style= "display: none">${data.id}</div>
               </div>
             </div>
           </div>
           <div class="col-sm-2 sidenav">
-
           </div>
         </div>
     `)
@@ -63,13 +62,22 @@ $(() => {
     return parseInt($(name)[0].innerHTML, 10);
   }
 
+  function removeFromOrder(order, id) {
+    let index = order.indexOf(id)
+    if (index > -1) {
+      order.splice(index, 1);
+    }
+  }
+
   function loadMenu () {
     $.ajax({
       method: "GET",
-      url: "/api/menu/1",
+      url: "/api/menu/" + window.location.pathname.replace("/u/", ""),
       success: ((items) => {
         renderMenu(items);
+        let itemsOrdered = []
         $(".minus").click(function(){
+          removeFromOrder(itemsOrdered, $(this).siblings(".id")[0].innerHTML)
           if (parseInt($(this).siblings(".qty")[0].innerHTML, 10) > 0) {
             let total = getValAndParseInt('#totalPrice') - countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
             $(this).siblings(".qty")[0].innerHTML -= 1;
@@ -77,16 +85,26 @@ $(() => {
           }
         });
         $(".plus").click(function(){
+          itemsOrdered.push($(this).siblings(".id")[0].innerHTML)
           let qtyValue = $(this).siblings(".qty").val();
+          console.log(qtyValue)
           qtyValue = parseInt($(this).siblings(".qty")[0].innerHTML, 10);
           $(this).siblings(".qty")[0].innerHTML = qtyValue + 1;
           let total = getValAndParseInt('#totalPrice') + countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
           $('#totalPrice')[0].innerHTML = total;
         });
+         $(".confirm").on("click", function(){
+           function gatherOrder () {
+              console.log(itemsOrdered)
+            }
+           gatherOrder ()
+      })
       })
     })
   }
 
+
   loadMenu();
+
 
 });
