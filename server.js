@@ -7,6 +7,7 @@ const ENV         = process.env.ENV || "development";
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
+const path        = require('path');
 const app         = express();
 
 const knexConfig  = require("./knexfile");
@@ -27,6 +28,17 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
+
+app.use(sass({
+    /* Options */
+    src: path.join(__dirname, 'styles'),
+    dest: path.join(__dirname, 'script/styles'),
+    debug: true,
+    outputStyle: 'compressed',
+    prefix:  '/public'  // Where prefix is at <link rel="stylesheets" href="prefix/style.css"/>
+}));
+
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
