@@ -1,5 +1,5 @@
 body {
-  background-color:white;
+  background-color: #ffebcc;
   font-family: 'Merriweather Sans', sans-serif;
 }
 
@@ -46,31 +46,38 @@ body {
 }
 
 .totalPriceBox {
-  top: 10px;
   font-size: 140%;
 }
 
 .phoneLabel{
   vertical-align: top;
-  margin-top: 12px;
+  margin-top: 4px;
 }
 
 #userPhoneNumber {
   margin-left: 4px;
+  background-color: #fff5e6;
 }
 
 .qty {
   margin-left: 4px;
   margin-right: 4px;
+  font-size: 120%;
 }
 
 .confirmButton {
-  top: 12px;
   left: 23px;
 }
 
 .orderBox {
-  padding: 8px 3px;
+  padding: 12px 6px;
   border-style: solid;
   border-radius: 10px;
+}
+
+.qtyButton {
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 50px;
+  padding: 2px 2px;
 }

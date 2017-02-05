@@ -35,7 +35,7 @@ $(() => {
                 ${data.price}
               </div>
               <div class="col-sm-2 text-center qtyBox">
-                <button class="minus">-</button><label class="qty" id="qty${idForItem}">0</label><button class="plus">+</button><div class= "id" style= "display: none">${data.id}</div>
+                <i class="fa fa-minus qtyButton minus" aria-hidden="true"></i><label class="qty" id="qty${idForItem}">0</label><i class="fa fa-plus qtyButton plus" aria-hidden="true"></i><div class= "id" style= "display: none">${data.id}</div>
               </div>
             </div>
           </div>
