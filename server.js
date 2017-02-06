@@ -65,6 +65,25 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.post("/yy", (req, res) => {
+  // Twilio Credentials
+var accountSid = 'AC05191b676835f31d0b8df1118296384c';
+var authToken = '23d754a054dd0296c9c0eac58bc8f985';
+
+//require the Twilio module and create a REST client
+var client = require('twilio')(accountSid, authToken);
+// var client = new twilio.RestClient(accountSid, authToken);
+client.messages.create({
+    to: "+16475029768",
+    from: "+16475572979",
+    body: "This is the ship that made the Kessel Run in fourteen parsecs?",
+}, function(err, message) {
+    console.log(message.sid);
+});
+console.log(res)
+
+})
+
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
 });
