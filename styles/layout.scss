@@ -46,6 +46,7 @@ body {
 }
 
 .totalPriceBox {
+  width: 220px;
   font-size: 140%;
 }
 
@@ -66,13 +67,15 @@ body {
 }
 
 .confirmButton {
+  top: 20px;
   left: 23px;
 }
 
 .confirm {
-  width: 80px;
-  height: 32px;
-  font-size: 120%;
+  width: 100px;
+  height: 50px;
+  font-size: 150%;
+  padding-top: 4px;
 }
 
 .orderBox {
@@ -118,4 +121,8 @@ body {
 #userOrderStatus {
   font-weight: bold;
   font-size: 150%;
+}
+
+.userPhoneInput {
+  top: 34px;
 }
