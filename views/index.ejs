@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link href="https://fonts.googleapis.com/css?family=Lobster|Merriweather+Sans" rel="stylesheet">
     <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+    <link rel="stylesheet" href="/css/buttons.css" type="text/css" />
     <script src="https://use.fontawesome.com/f322ea3e70.js"></script>
 
     <script type="text/javascript" src="/vendor/jquery-3.0.0.js"></script>
@@ -57,10 +58,12 @@
                   <label class="phoneLabel">Phone Number: </label><input type="text" id="userPhoneNumber" class= "phoneNum"></input>
                 </div>
                 <div class="col-sm-3 text-left totalPriceBox">
-                  <label>Total Price: $</label> <label id="totalPrice">0</label>
+                  <label>Sub Total  : $</label><label id="subTotal">0</label>
+                  <label>Tax (13%)  : $</label><label id="tax">0</label>
+                  <label>Total Price: $</label><label id="totalPrice">0</label>
                 </div>
                 <div class="col-sm-2 text-left confirmButton">
-                  <button class = "confirm">Order</button>
+                  <button type="button" class="btn btn-warning confirm">Order</button>
                 </div>
               </div>
             </div>

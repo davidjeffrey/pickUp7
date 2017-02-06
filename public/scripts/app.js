@@ -136,21 +136,21 @@ $(() => {
           </div>
         </div>
         <div class="row content userInfo">
-            <div class="col-sm-2 sidenav">
-            </div>
-            <div class="col-sm-8 text-left">
-              <div class="row">
-                <div class="col-sm-5 text-center">
-                  <div>Phone Number</div><div id="userPhone">${data.order_phone_num}</div>
-                </div>
-                <div class="col-sm-5 text-center">
-                  <div>Order Status</div><div id="userOrderStatus">${data.order_status}</div>
-                </div>
+          <div class="col-sm-2 sidenav">
+          </div>
+          <div class="col-sm-8 text-left">
+            <div class="row">
+              <div class="col-sm-5 text-center">
+                <div>Phone Number</div><div id="userPhone">${data.order_phone_num}</div>
+              </div>
+              <div class="col-sm-5 text-center">
+                <div>Order Status</div><div id="userOrderStatus">${data.order_status}</div>
               </div>
             </div>
-            <div class="col-sm-2 sidenav">
-            </div>
           </div>
+          <div class="col-sm-2 sidenav">
+          </div>
+        </div>
         `);
       return result;
    }
@@ -203,9 +203,13 @@ $(() => {
         $(".minus").click(function(){
           removeFromOrder($itemsOrdered, $(this).siblings(".id")[0].innerHTML)
           if (parseInt($(this).siblings(".qty")[0].innerHTML, 10) > 0) {
-            let total = getValAndParseInt('#totalPrice') - countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
+            let subTotal = getValAndParseInt('#subTotal') - countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
             $(this).siblings(".qty")[0].innerHTML -= 1;
-            $('#totalPrice')[0].innerHTML = total;
+            let tax = (subTotal * 0.13).toFixed(2);
+            let totalPrice = (subTotal * 1.13).toFixed(2);
+            $('#subTotal')[0].innerHTML = subTotal;
+            $('#tax')[0].innerHTML = tax;
+            $('#totalPrice')[0].innerHTML = totalPrice;
           }
         });
         $(".plus").click(function(){
@@ -214,8 +218,12 @@ $(() => {
           console.log(qtyValue)
           qtyValue = parseInt($(this).siblings(".qty")[0].innerHTML, 10);
           $(this).siblings(".qty")[0].innerHTML = qtyValue + 1;
-          let total = getValAndParseInt('#totalPrice') + countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
-          $('#totalPrice')[0].innerHTML = total;
+          let subTotal = getValAndParseInt('#subTotal') + countTotalPrice(parseInt($(this).parent().siblings(".price")[0].innerHTML, 10), 1);
+          let tax = (subTotal * 0.13).toFixed(2);
+          let totalPrice = (subTotal * 1.13).toFixed(2);
+          $('#subTotal')[0].innerHTML = subTotal;
+          $('#tax')[0].innerHTML = tax;
+          $('#totalPrice')[0].innerHTML = totalPrice;
         });
         $(".confirm").on("click", function(){
           event.preventDefault();
