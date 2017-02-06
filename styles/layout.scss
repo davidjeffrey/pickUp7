@@ -79,7 +79,7 @@ body {
 }
 
 .orderBox {
-  padding: 12px 6px;
+  padding: 6px 6px;
   border-style: solid;
   border-radius: 10px;
 }
@@ -123,6 +123,19 @@ body {
   font-size: 150%;
 }
 
-.userPhoneInput {
-  top: 34px;
+#modification {
+  margin-left: 4px;
+  background-color: #fff5e6;
+  height: 58px;
+  width: 189px;
+
+}
+
+.phoneNumberBox {
+  margin-bottom: 4px;
+}
+
+.modLabel {
+  vertical-align: top;
+  margin-top: 13px;
 }
