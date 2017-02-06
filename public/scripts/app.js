@@ -48,9 +48,29 @@ $(() => {
   }
 
   function createOrderElement (orderData) {
-    console.log(orderData)
     let result = $(`
-      <div>
+      <div class="row content">
+        <div class="col-sm-2 sidenav">
+        </div>
+        <div class="col-sm-8 text-left">
+          <div class="row menu-area">
+            <div class="col-sm-6 text-left">
+              <div id="item${idForItem}" class="item_name">${orderData.item}</div>
+              <div id="item_description${idForItem}" class="food_description">${orderData.item_description}</div>
+            </div>
+            <div class="col-sm-2 text-center price" id="price${idForItem}">
+              ${orderData.price}
+            </div>
+            <div class="col-sm-2 text-center">
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-2 sidenav">
+        </div>
+      </div>
+
+
       ${orderData.order_status}
       ${orderData.order_time}
       ${orderData.order_estimated_time}
@@ -60,7 +80,7 @@ $(() => {
       ${orderData.item}
       ${orderData.price}
       ${orderData.item_description}
-       </div>
+
 
       // {
       //   "id": 3,
@@ -81,6 +101,60 @@ $(() => {
       return result;
    }
 
+   function orderDetails(data, subTotal, tax, priceAfterTax) {
+      let result = $(`
+        <div class="row content">
+          <div class="col-sm-2 sidenav">
+          </div>
+          <div class="col-sm-8 text-left priceDetails">
+            <div class="row">
+              <div class="col-sm-6 text-right">
+                <label>Sub Total </label>
+              </div>
+              <div class="col-sm-2 text-center">
+                <div id="subTotal">${subTotal}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 text-right">
+                <label>Tax (13%) </label>
+              </div>
+              <div class="col-sm-2 text-center">
+                <div id="tax">${tax}</div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 text-right">
+                <label id="totalPriceLabel">Total </label>
+              </div>
+              <div class="col-sm-2 text-center">
+                <div id="total">${priceAfterTax}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2 sidenav">
+          </div>
+        </div>
+        <div class="row content userInfo">
+            <div class="col-sm-2 sidenav">
+            </div>
+            <div class="col-sm-8 text-left">
+              <div class="row">
+                <div class="col-sm-5 text-center">
+                  <div>Phone Number</div><div id="userPhone">${data.order_phone_num}</div>
+                </div>
+                <div class="col-sm-5 text-center">
+                  <div>Order Status</div><div id="userOrderStatus">${data.order_status}</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2 sidenav">
+            </div>
+          </div>
+        `);
+      return result;
+   }
+
   function renderMenu (items) {
       for (item of items) {
         let $item = createMenuElement(item);
@@ -89,10 +163,18 @@ $(() => {
   }
 
   function renderOrder (items) {
+    let subTotal = 0;
+    let itemData;
     for (item of items) {
+      subTotal += parseInt(item.price, 10);
       let $item = createOrderElement(item);
       $('.container').append($item);
+      itemData = item;
     }
+    let tax = (subTotal * 0.13).toFixed(2);
+    let priceAfterTax = (subTotal * 1.13).toFixed(2);
+    let $details = orderDetails(itemData, subTotal, tax, priceAfterTax);
+    $('.container').append($details);
   }
 
   function countTotalPrice(price, qty){
@@ -147,7 +229,8 @@ $(() => {
             },
             success: ((res) => {
               console.log(res)
-              $('.container').empty();
+              $('.menuList').empty();
+              $('.finalizeOrder').empty();
               $.ajax({
                 method: "GET",
                 url: "/api/updates/" + res,
