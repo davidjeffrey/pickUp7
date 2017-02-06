@@ -102,6 +102,7 @@ $(() => {
    }
 
    function orderDetails(data, subTotal, tax, priceAfterTax) {
+    console.log(data);
       let result = $(`
         <div class="row content">
           <div class="col-sm-2 sidenav">
@@ -140,11 +141,30 @@ $(() => {
           </div>
           <div class="col-sm-8 text-left">
             <div class="row">
-              <div class="col-sm-5 text-center">
+              <div class="col-sm-4 text-center">
                 <div>Phone Number</div><div id="userPhone">${data.order_phone_num}</div>
               </div>
-              <div class="col-sm-5 text-center">
+              <div class="col-sm-4 text-center">
                 <div>Order Status</div><div id="userOrderStatus">${data.order_status}</div>
+              </div>
+              <div class="col-sm-4 text-center">
+                <div>Modification</div><div id="orderMod">${data.order_modifications}</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-2 sidenav">
+          </div>
+        </div>
+        <div class="row content userInfo">
+          <div class="col-sm-2 sidenav">
+          </div>
+          <div class="col-sm-8 text-left">
+            <div class="row">
+              <div class="col-sm-4 text-right">
+                <div>Order Time:</div>
+              </div>
+              <div class="col-sm-8 text-left">
+                <div id="order_time">${data.order_time}</div>
               </div>
             </div>
           </div>
