@@ -244,6 +244,16 @@ $(() => {
                 url: "/api/updates/" + res,
                 success: ((theOrder) => {
                   renderOrder(theOrder)
+                  function request() {
+                    $.ajax({
+                    method: "GET",
+                    url: "/api/updates/p/" + res,
+                    success: ((updatedOrderStatus) => {
+                      console.log(updatedOrderStatus)
+                    })
+                    // setInterval(request, 6000);
+                  })
+                }
 
                 })
               })
